@@ -1,0 +1,44 @@
+﻿@model List<ContactModel>;
+@{
+    ViewData["Title"] = "Contacts list";
+}
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="CreateContact">Add a new contact</a>
+        </div>
+        <br/>
+    <h1 class="display-4">Contacts list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+           @if(Model != null && Model.Any())
+            {
+                foreach(ContactModel contact in Model)
+                {
+                    <tr>
+                        <th scope="row">@contact.Id</th>
+                        <td>@contact.Name</td>
+                        <td>@contact.Email</td>
+                        <td>@contact.Phone</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary" role="button" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="EditContact">Edit</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="DeleteContact">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
