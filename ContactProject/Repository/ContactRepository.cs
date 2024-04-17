@@ -1,7 +1,9 @@
 ﻿using ContactControll.Controllers;
 using ContactControll.Data;
 using ContactProject.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MySqlConnector;
 using System.Buffers.Text;
 
 namespace ContactProject.Repository
@@ -17,6 +19,7 @@ namespace ContactProject.Repository
         {
             return _baseContext.Contacts.ToList();
         }
+
         public ContactModel AddContact(ContactModel contact)
         {
             _baseContext.Contacts.Add(contact);
@@ -28,6 +31,7 @@ namespace ContactProject.Repository
         {
             return _baseContext.Contacts.FirstOrDefault(c => c.Id == id);
         }
+
 
         public ContactModel UpdateContact(ContactModel contact)
         {
